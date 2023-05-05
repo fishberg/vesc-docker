@@ -21,11 +21,29 @@ WORKDIR ${WORKSPACE}/src
 RUN git clone https://github.com/mit-racecar/racecar.git
 RUN git clone https://github.com/mit-racecar/vesc.git
 
-# patch
+# patches
+# ------------------------------------------------------------------------------
+# racecar-v2-teleop.patch
+ENV PATCH="racecar-v2-teleop.patch"
 WORKDIR ${WORKSPACE}/src/racecar/racecar/launch/includes
-COPY "./copy/fix.patch" /root
-RUN patch < ~/fix.patch
-RUN rm /root/fix.patch
+COPY "./copy/$PATCH" /root
+RUN patch < ~/$PATCH
+RUN rm /root/$PATCH
+
+# joy_teleop.patch
+ENV PATCH="joy_teleop.patch"
+WORKDIR ${WORKSPACE}/src/racecar/racecar/config/racecar-v2
+COPY "./copy/$PATCH" /root
+RUN patch < ~/$PATCH
+RUN rm /root/$PATCH
+
+# vesc.patch
+ENV PATCH="vesc.patch"
+WORKDIR ${WORKSPACE}/src/racecar/racecar/config/racecar-v2
+COPY "./copy/$PATCH" /root
+RUN patch < ~/$PATCH
+RUN rm /root/$PATCH
+# ------------------------------------------------------------------------------
 
 # build
 WORKDIR ${WORKSPACE}

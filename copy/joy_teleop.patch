@@ -1,0 +1,11 @@
+--- joy_teleop.yaml.orig	2023-05-05 20:24:26.206142272 +0000
++++ joy_teleop.yaml	2023-05-05 20:24:41.318055218 +0000
+@@ -33,7 +33,7 @@
+       -
+         axis: 3
+         target: drive.steering_angle
+-        scale: 0.34                  # joystick will command plus or minus ~20 degrees steering angle
++        scale: 0.53                  # joystick will command plus or minus ~30 degrees steering angle
+         offset: 0.0
+ 
+   # Enable autonomous control by pressing right bumper
